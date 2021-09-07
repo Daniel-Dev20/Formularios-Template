@@ -1,0 +1,86 @@
+<h4>Formularios <small> tipo </small></h4>
+<hr>
+<form autocomplete="off" (ngSubmit)="guardar(form)" #form="ngForm">
+
+  <div>
+
+    <div class="form-group row">
+      <label class="col-2 col-form-label">Nombre</label>
+      <div class="col-8">
+
+        <input class="form-control"
+               type="text"
+               name="nombre"
+               [class.is-invalid]="nombre.invalid && nombre.touched"
+               #nombre="ngModel"
+               required
+               ngModel
+               minlength="5"
+               placeholder="Nombre">
+               <small *ngIf="nombre.invalid && nombre.touched" class="form-text text-danger">Debe contener 5 letras</small>
+            </div>
+    </div>
+
+    <div class="form-group row">
+      <label class="col-2 col-form-label">Apellido</label>
+      <div class="col-8">
+
+        <input class="form-control"
+               type="text"
+               name="apellido"
+               [class.is-invalid]="apellido.invalid && apellido.touched"
+               #apellido="ngModel"
+               ngModel
+               required
+               minlength="5"
+               placeholder="Apellido">
+               <small *ngIf="apellido.invalid && apellido.touched" class="from-text text-danger">Debe contener 5 letas</small>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="form-group row">
+    <label class="col-2 col-form-label">Correo</label>
+    <div class="col-8">
+
+      <input class="form-control"
+             type="email"
+             name="correo"
+             [class.is-invalid]="correo.invalid && correo.touched"
+             #correo="ngModel"
+             ngModel
+             required
+             pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$"
+             placeholder="Correo electrónico">
+             
+             <small *ngIf="correo.invalid && correo.touched" class="from-text text-danger">El correo es obligatorio</small>
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <label class="col-2 col-form-label">Correo</label>
+    <div class="col-8">
+        <select class="form-select"
+        name="pais"
+        ngModel
+        required
+        [class.is-invalid]="pais.invalid && pais.touched"
+        #pais="ngModel">
+        
+            <option *ngFor="let country of countries" [value]="country.code">{{country.name}}</option>
+        </select>
+    </div>
+  </div>
+
+
+  <div class="form-group row">
+    <label class="col-2 col-form-label">&nbsp;</label>
+    <div class="input-group col-md-8">
+      <button type="submit" class="btn btn-outline-primary btn-block">
+        Guardar
+      </button>
+    </div>
+  </div>
+
+</form>
